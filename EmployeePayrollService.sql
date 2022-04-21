@@ -18,12 +18,11 @@ insert into employee_payroll(Id,Name,Salary,StartDate)values
 (4,'Pratik',30000,'2022-04-01'),
 (5,'Arnav',45000,'2022-07-20')
 ;
---retrivew all data from employee_payroll table
+--retrive all data from employee_payroll table
 select * from employee_payroll;
 --to retrieve data of omkar's salary
 select salary from employee_payroll where name = 'Omkar';
---to retrieve data of employees in between 2018-01-01 and today
-select * from employee_payroll where StartDate between CAST ('2018-01-01' AS date) and GETDATE();
+
 --adds new column named 'Gender'
 alter table employee_payroll add Gender char(1);
 --set values of Gender for Omkar,Pratik,Arnav,Arjun and Anjali 
@@ -31,3 +30,6 @@ update employee_payroll set Gender = 'M' where Name = 'Omkar' or Name = 'Arjun'o
 update employee_payroll set Gender = 'F' where Name = 'Anjali';
 --gives the info about the table named employee_payroll
 select * from employee_payroll;
+--Retrives Sum, Average, Minimun, Maximum salaries and count for male and female 
+select Gender,SUM(Salary) as 'Sum of Salaries', AVG(Salary) as 'Average Salary', MIN(Salary) as 'Minimum Salary', MAX(Salary) as 'Maximum Salary', COUNT(Gender) as 'Count' from employee_payroll
+group by Gender;

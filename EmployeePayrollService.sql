@@ -28,8 +28,21 @@ alter table employee_payroll add Gender char(1);
 --set values of Gender for Omkar,Pratik,Arnav,Arjun and Anjali 
 update employee_payroll set Gender = 'M' where Name = 'Omkar' or Name = 'Arjun'or Name='Pratik'or Name='Arnav';
 update employee_payroll set Gender = 'F' where Name = 'Anjali';
+
 --gives the info about the table named employee_payroll
 select * from employee_payroll;
+
 --Retrives Sum, Average, Minimun, Maximum salaries and count for male and female 
 select Gender,SUM(Salary) as 'Sum of Salaries', AVG(Salary) as 'Average Salary', MIN(Salary) as 'Minimum Salary', MAX(Salary) as 'Maximum Salary', COUNT(Gender) as 'Count' from employee_payroll
 group by Gender;
+--add coloumn 'Address' with default value and add column phone,department
+alter table employee_payroll 
+add Phone varchar(15), Address varchar(100), Department varchar(100);
+update employee_payroll set Address = 'India';
+update employee_payroll set Department = 'HR' where Name in ('Omkar','Arjun');
+update employee_payroll set Department = 'Manager' where Name not in ('Omkar','Arjun');
+update employee_payroll set Phone = 9922100977 where Name = 'Omkar';
+update employee_payroll set Phone = 8890100907 where Name = 'Anjali';
+update employee_payroll set Phone = 7778147670 where Name = 'Arjun';
+update employee_payroll set Phone = 8613780911 where Name = 'Pratik';
+update employee_payroll set Phone = 8999005678 where Name = 'Arnav';

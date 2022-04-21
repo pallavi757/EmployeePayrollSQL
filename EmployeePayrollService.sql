@@ -18,5 +18,5 @@ insert into employee_payroll(Id,Name,Salary,StartDate)values
 (4,'Pratik',30000,'2022-04-01'),
 (5,'Arnav',45000,'2022-07-20')
 ;
---views all data in employee_payroll
+--retrivew all data from employee_payroll table
 select * from employee_payroll;

@@ -24,3 +24,10 @@ select * from employee_payroll;
 select salary from employee_payroll where name = 'Omkar';
 --to retrieve data of employees in between 2018-01-01 and today
 select * from employee_payroll where StartDate between CAST ('2018-01-01' AS date) and GETDATE();
+--adds new column named 'Gender'
+alter table employee_payroll add Gender char(1);
+--set values of Gender for Omkar,Pratik,Arnav,Arjun and Anjali 
+update employee_payroll set Gender = 'M' where Name = 'Omkar' or Name = 'Arjun'or Name='Pratik'or Name='Arnav';
+update employee_payroll set Gender = 'F' where Name = 'Anjali';
+--gives the info about the table named employee_payroll
+select * from employee_payroll;

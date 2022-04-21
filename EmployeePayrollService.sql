@@ -20,3 +20,7 @@ insert into employee_payroll(Id,Name,Salary,StartDate)values
 ;
 --retrivew all data from employee_payroll table
 select * from employee_payroll;
+--to retrieve data of omkar's salary
+select salary from employee_payroll where name = 'Omkar';
+--to retrieve data of employees in between 2018-01-01 and today
+select * from employee_payroll where StartDate between CAST ('2018-01-01' AS date) and GETDATE();

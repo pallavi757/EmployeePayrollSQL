@@ -49,3 +49,19 @@ update employee_payroll set Phone = 8999005678 where Name = 'Arnav';
 
 --ability to add column Basic Pay,Deductions,Taxable Pay,Income Tax, Net Pay
 alter table employee_payroll add BasicPay bigint,Deductions bigint,TaxablePay bigint,IncomeTax bigint,NetPay bigint;
+
+--inserted terissa having with differnt id and department
+insert into employee_payroll(Id,Name,Salary,StartDate,Gender,Phone,Address,Department,BasicPay,Deductions,TaxablePay,IncomeTax,NetPay)values
+(6,'Terissa',20000,'2022-06-22','F',7788123423,'India','Sales',20000,2000,1100,200,16700),
+(7,'Terissa',30000,'2022-03-10','F',9988002033,'India','Marketing',30000,2000,1100,200,26700);
+
+select * from employee_payroll;
+
+--set Basic Pay,Deductions,Taxable Pay,Income Tax, Net Pay to particular person 
+update employee_payroll set BasicPay=40000, Deductions = 2000,TaxablePay = 1100, IncomeTax =200, NetPay = 36700 where Name = 'Omkar';
+update employee_payroll set BasicPay=25000, Deductions = 2000,TaxablePay = 1100, IncomeTax =200, NetPay = 21700 where Name = 'Anjali';
+update employee_payroll set BasicPay=40000, Deductions = 2000,TaxablePay = 1100, IncomeTax =200, NetPay = 36700 where Name = 'Arjun';
+update employee_payroll set BasicPay=30000, Deductions = 2000,TaxablePay = 1100, IncomeTax =200, NetPay = 26700 where Name = 'Pratik';
+update employee_payroll set BasicPay=45000, Deductions = 2000,TaxablePay = 1100, IncomeTax =200, NetPay = 41700 where Name = 'Arnav';
+
+select * from employee_payroll where Name = 'Terissa';

@@ -46,3 +46,6 @@ update employee_payroll set Phone = 8890100907 where Name = 'Anjali';
 update employee_payroll set Phone = 7778147670 where Name = 'Arjun';
 update employee_payroll set Phone = 8613780911 where Name = 'Pratik';
 update employee_payroll set Phone = 8999005678 where Name = 'Arnav';
+
+--ability to add column Basic Pay,Deductions,Taxable Pay,Income Tax, Net Pay
+alter table employee_payroll add BasicPay bigint,Deductions bigint,TaxablePay bigint,IncomeTax bigint,NetPay bigint;

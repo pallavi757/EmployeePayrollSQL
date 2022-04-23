@@ -65,3 +65,82 @@ update employee_payroll set BasicPay=30000, Deductions = 2000,TaxablePay = 1100,
 update employee_payroll set BasicPay=45000, Deductions = 2000,TaxablePay = 1100, IncomeTax =200, NetPay = 41700 where Name = 'Arnav';
 
 select * from employee_payroll where Name = 'Terissa';
+
+--UC11 For ER diagram generate new table
+
+--created table employee
+create table employee
+(
+employee_id int identity(1,1) primary key,
+name varchar(150) not null,
+gender char(1),
+phone_no bigint,
+start_date date,
+address varchar(150) not null default('India')
+);
+
+--inserted values in employee table
+insert into  employee values
+('Arvind','M','9999999999','2020-05-12','Nagar colony'),
+('Tina', 'F', '8888888888','2019-06-22',default),
+('Mukesh', 'M', '8888888888','2021-8-27', 'MG Street'),
+('Sarang','M','4545454545','2022-10-6','Andheri road');
+
+--created table department
+create table department
+(
+dept_id int identity(100,1) primary key,
+dept_name varchar(50) not null,
+);
+
+--inserted values in department table
+insert into department values
+('Marketing'),
+('Sales'),
+('Engineering'),
+('HR');
+--created table employee_department for many to many relationship
+create table employee_department
+(
+employee_id int not null foreign key references employee(employee_id),
+dept_id int not null foreign key references department(dept_id) 
+);
+
+--inserted values in employee_department table
+insert into employee_department values
+(1,100),
+(2,100),
+(2,101),
+(3,103),
+(4,102);
+--created table payroll. Here taxable_pay and net_pay are derived attributes
+create table payroll
+(
+employee_id int not null foreign key references employee(employee_id),
+basic_pay bigint not null,
+deduction bigint,
+taxable_pay as basic_pay-deduction,
+income_tax bigint,
+net_pay as basic_pay-(income_tax+deduction)
+);
+
+--inserted values in payroll table. Only employee_id,start_date,basic_pay,deductions,income_tax inserted. Others are derived
+insert into payroll values
+(1,200000,12000,10000),
+(2,300000,15000,20000),
+(3,100000,5000,2000),
+(4,30000,2000,0);
+
+--for viewing inserted values
+select * from employee;
+select * from department;
+select * from employee_department; 
+select * from payroll;
+
+--retrives data for all employee
+select e.employee_id,name,gender,phone_no,start_date, address,d.dept_id,d.dept_name,basic_pay,deduction,taxable_pay,income_tax,net_pay
+from employee e
+
+inner join employee_department ed on ed.employee_id = e.employee_id
+inner join department d on d.dept_id= ed.dept_id
+inner join payroll p on p.employee_id = e.employee_id;
